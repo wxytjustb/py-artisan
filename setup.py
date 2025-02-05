@@ -1,15 +1,24 @@
 from setuptools import setup, find_packages
+import os
 
 def read_requirements(filename):
     """读取 requirements 文件"""
-    with open(filename) as f:
-        requirements = []
-        for line in f:
-            line = line.strip()
-            # 跳过空行和注释
-            if line and not line.startswith('#'):
-                requirements.append(line)
-        return requirements
+    # 获取当前文件所在目录的绝对路径
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(current_dir, filename)
+    
+    try:
+        with open(filepath) as f:
+            requirements = []
+            for line in f:
+                line = line.strip()
+                # 跳过空行和注释
+                if line and not line.startswith('#'):
+                    requirements.append(line)
+            return requirements
+    except FileNotFoundError:
+        # 如果文件不存在，返回空列表
+        return []
 
 setup(
     name="py_artisan",
@@ -29,6 +38,6 @@ setup(
     python_requires=">=3.6",
     install_requires=read_requirements('requirements/base.txt'),
     extras_require={
-        "dev": read_requirements('requirements.txt'),
+        "dev": read_requirements('requirements/dev.txt'),
     },
 )
