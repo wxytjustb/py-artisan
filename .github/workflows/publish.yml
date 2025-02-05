@@ -32,7 +32,11 @@ jobs:
     
     - name: Build package
       run: |
-        ls -l 
+        # Debug information
+        pwd
+        ls -la
+        ls -la py_artisan/
+        # Build
         python -m build
     
     - name: Publish to PyPI

@@ -17,13 +17,15 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+# 声明动态依赖
+dynamic = ["dependencies", "optional-dependencies"]
 
 [project.urls]
 Homepage = "https://github.com/wxytjustb/py-artisan"
 Repository = "https://github.com/wxytjustb/py-artisan.git"
 
-[tool.setuptools]
-packages = ["py_artisan"]
+[tool.setuptools.packages.find]
+include = ["py_artisan", "py_artisan.*"]
 
 [tool.pytest.ini_options]
 addopts = "-ra -q"
