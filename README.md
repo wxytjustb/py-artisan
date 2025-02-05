@@ -7,9 +7,12 @@
 
 
 
-# 包开发
+# develop model
 pip install -e .
 
-# 包测试
+# package test
 pip install -e .[dev]
 pytest
+
+# package publish
+
